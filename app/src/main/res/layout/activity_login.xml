@@ -106,6 +106,7 @@
             android:layout_height="27dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="6dp"
+            android:src="@drawable/show_password"
             android:layout_alignEnd="@id/passwordField"
             android:layout_alignTop="@id/passwordField"/>
 
@@ -119,7 +120,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/poppins"
             android:textSize="12sp"
-            android:buttonTint="@color/primary"/>
+            android:buttonTint="@color/white"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/loginBtn"
@@ -143,9 +144,7 @@
             android:fontFamily="@font/poppins_semibold_italic"
             android:textSize="12sp"
             android:textAlignment="center"
-            android:text="Error Message"/>
-
-
+            android:text=""/>
 
         <TextView
             android:layout_alignParentBottom="true"

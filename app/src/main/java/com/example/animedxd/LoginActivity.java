@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameField,passwordField;
     private AppCompatButton loginBtn;
     private TextView errorMessage;
+    private ImageView togglePassword;
+    private Boolean passwordVisible = false;
 
     private String extractString(EditText field) {
         return field.getText().toString();
@@ -64,6 +69,19 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, HomeActivity.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
+            }
+        });
+
+        togglePassword = findViewById(R.id.passwordToggle);
+        togglePassword.setOnClickListener(v -> {
+            if (passwordVisible) {
+                passwordField.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                togglePassword.setImageResource(R.drawable.show_password);
+                passwordVisible = false;
+            } else {
+                passwordField.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                togglePassword.setImageResource(R.drawable.hide_password);
+                passwordVisible = true;
             }
         });
     }
