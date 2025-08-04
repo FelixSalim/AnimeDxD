@@ -1,14 +1,31 @@
 package com.example.animedxd;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private EditText usernameField,passwordField;
+    private AppCompatButton loginBtn;
+
+    private String extractString(EditText field) {
+        return field.getText().toString();
+    }
+
+    private void sendToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +37,29 @@ public class LoginActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        usernameField = findViewById(R.id.usernameField);
+        passwordField = findViewById(R.id.passwordField);
+        loginBtn = findViewById(R.id.loginBtn);
+        loginBtn.setOnClickListener(v -> {
+            loginBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            loginBtn.setTextColor(Color.parseColor("#FA00FF"));
+
+            String username = extractString(usernameField);
+            String password = extractString(passwordField);
+
+            if (username.isEmpty()) {
+                sendToast("Username cannot be empty");
+            } else if (password.isEmpty()) {
+                sendToast("Password cannot be empty");
+            } else if (username.length() < 5 || username.length() > 10) {
+                sendToast("Username must be between 5-10 characters (inclusive)");
+            } else {
+                Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
         });
     }
 }
