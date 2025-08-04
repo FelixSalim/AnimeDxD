@@ -126,12 +126,26 @@
             android:layout_below="@id/checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/button_styles"
             android:textColor="@color/white"
             android:text="LOGIN"
             android:textSize="15sp"
             android:fontFamily="@font/poppins_bold"
             />
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_below="@id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:fontFamily="@font/poppins_semibold_italic"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:text="Error Message"/>
+
+
 
         <TextView
             android:layout_alignParentBottom="true"

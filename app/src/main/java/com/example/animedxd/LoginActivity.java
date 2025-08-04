@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameField,passwordField;
     private AppCompatButton loginBtn;
+    private TextView errorMessage;
 
     private String extractString(EditText field) {
         return field.getText().toString();
@@ -42,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         usernameField = findViewById(R.id.usernameField);
         passwordField = findViewById(R.id.passwordField);
         loginBtn = findViewById(R.id.loginBtn);
+        errorMessage = findViewById(R.id.errorMessage);
+
         loginBtn.setOnClickListener(v -> {
             loginBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
             loginBtn.setTextColor(Color.parseColor("#FA00FF"));
@@ -50,12 +54,13 @@ public class LoginActivity extends AppCompatActivity {
             String password = extractString(passwordField);
 
             if (username.isEmpty()) {
-                sendToast("Username cannot be empty");
+                errorMessage.setText("Username cannot be empty");
             } else if (password.isEmpty()) {
-                sendToast("Password cannot be empty");
+                errorMessage.setText("Password cannot be empty");
             } else if (username.length() < 5 || username.length() > 10) {
-                sendToast("Username must be between 5-10 characters (inclusive)");
+                errorMessage.setText("Username must be between 5-10 characters (inclusive)");
             } else {
+                errorMessage.setText("");
                 Intent intent = new Intent(this, HomeActivity.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
