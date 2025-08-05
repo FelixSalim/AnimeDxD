@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:orientation="vertical"
+    android:background="@color/background"
     android:gravity="center">
 
 <!--    TEMPORARY CODE, REMOVE WHEN U WORK ON THIS   -->

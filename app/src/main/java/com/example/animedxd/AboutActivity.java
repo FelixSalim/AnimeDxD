@@ -1,6 +1,7 @@
 package com.example.animedxd;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AboutActivity extends AppCompatActivity {
+
+    private String username;
+    private TextView welcomeText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,10 @@ public class AboutActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        username = getIntent().getStringExtra("username");
+
+        welcomeText = findViewById(R.id.welcomeText);
+        welcomeText.setText("Welcome, " + username + "!");
     }
 }
