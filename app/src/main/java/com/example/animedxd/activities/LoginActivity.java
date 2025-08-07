@@ -1,9 +1,8 @@
-package com.example.animedxd;
+package com.example.animedxd.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
@@ -17,6 +16,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.animedxd.R;
 
 public class LoginActivity extends AppCompatActivity {
 
