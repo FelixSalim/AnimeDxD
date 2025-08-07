@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -12,23 +12,34 @@
 
 <!--    TEMPORARY CODE, REMOVE WHEN U WORK ON THIS   -->
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:text="20sp"/>
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/listPageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List Page"/>
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="20sp"/>
 
-    <Button
-        android:id="@+id/aboutPageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About Page"/>
+    </LinearLayout>
 
-</LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/secondary"
+        app:itemTextAppearanceActive="@style/BottomNavTextStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavTextStyle"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:itemRippleColor="@color/transparent"
+        app:itemBackground="@null"
+        app:itemActiveIndicatorStyle="@color/transparent"
+        app:menu="@menu/bottom_nav_menu"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

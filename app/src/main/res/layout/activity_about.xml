@@ -1,49 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical"
     tools:context=".activities.AboutActivity">
 
-    <TextView
-        android:id="@+id/welcomeText"
-        android:layout_marginTop="60dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome,"
-        android:fontFamily="@font/poppins"
-        android:textSize="25sp"
-        android:textColor="@color/white"
-        android:textAlignment="center"/>
+        android:orientation="vertical">
 
-    <TextView
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome,"
+            android:fontFamily="@font/poppins"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About Us"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:textAlignment="center"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_marginTop="-50dp"
+            android:layout_marginBottom="-80dp"
+            android:src="@drawable/app_logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AnimeDXD is your ultimate companion for all things anime. Designed for anime enthusiasts around the globe, AnimeDXD offers a seamless and immersive experience to explore, discover, and stay updated with the latest in the anime world. From a massive anime library to the newest manga and news, everything is just a tap away."
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:paddingHorizontal="55dp"
+            android:fontFamily="@font/poppins"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="About Us"
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/white"
-        android:textSize="27sp"
-        android:textAlignment="center"/>
+        android:layout_height="90dp"
+        android:background="@color/secondary"
+        app:itemBackground="@null"
+        app:itemRippleColor="@color/transparent"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:itemActiveIndicatorStyle="@color/transparent"
+        app:itemTextAppearanceActive="@style/BottomNavTextStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavTextStyle"
+        app:menu="@menu/bottom_nav_menu"
+        android:layout_alignParentBottom="true"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_marginTop="-50dp"
-        android:layout_marginBottom="-80dp"
-        android:src="@drawable/app_logo" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="AnimeDXD is your ultimate companion for all things anime. Designed for anime enthusiasts around the globe, AnimeDXD offers a seamless and immersive experience to explore, discover, and stay updated with the latest in the anime world. From a massive anime library to the newest manga and news, everything is just a tap away."
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:paddingHorizontal="55dp"
-        android:fontFamily="@font/poppins"
-        android:textSize="14sp"/>
-
-</LinearLayout>
+</RelativeLayout>

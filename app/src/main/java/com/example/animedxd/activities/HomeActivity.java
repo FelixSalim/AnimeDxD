@@ -2,6 +2,7 @@ package com.example.animedxd.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.animedxd.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -26,24 +28,35 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
-//        TEMPORARY CODE, REMOVE WHEN U START WORKING
-        TextView welcome = findViewById(R.id.welcome);
         String username = getIntent().getStringExtra("username");
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setSelectedItemId(R.id.navHome);
+        bottomNav.setOnItemSelectedListener(item -> {
+            Intent intent;
+            if (item.getItemId() == R.id.navHome) {
+                intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.navList) {
+                intent = new Intent(this, ListActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                return true;
+            }
+            if (item.getItemId() == R.id.navAbout) {
+                intent = new Intent(this, AboutActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
+
+//      TEMPORARY CODE, REMOVE WHEN U START WORKING
+        TextView welcome = findViewById(R.id.welcome);
         welcome.setText("Welcome, " + username);
-
-        Button listPageBtn = findViewById(R.id.listPageBtn);
-        Button aboutPageBtn = findViewById(R.id.aboutPageBtn);
-
-        listPageBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ListActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-        });
-
-        aboutPageBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AboutActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-        });
     }
 }
