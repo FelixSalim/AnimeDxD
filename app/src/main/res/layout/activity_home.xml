@@ -10,9 +10,22 @@
     android:background="@color/background"
     android:gravity="center">
 
+    <ImageButton
+        android:id="@+id/dropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/menu_background"
+        android:src="@drawable/menu_icon"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:padding="15dp"
+        />
+
 <!--    TEMPORARY CODE, REMOVE WHEN U WORK ON THIS   -->
 
     <LinearLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
@@ -25,7 +38,7 @@
             android:text="20sp"/>
 
     </LinearLayout>
-
+<!--     TEMPORARY CODE STOPS HERE   -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

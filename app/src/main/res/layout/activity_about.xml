@@ -8,7 +8,20 @@
     android:background="@color/background"
     tools:context=".activities.AboutActivity">
 
+    <ImageButton
+        android:id="@+id/dropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/menu_background"
+        android:src="@drawable/menu_icon"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:padding="15dp"
+        />
+
     <LinearLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -46,7 +59,7 @@
             android:text="AnimeDXD is your ultimate companion for all things anime. Designed for anime enthusiasts around the globe, AnimeDXD offers a seamless and immersive experience to explore, discover, and stay updated with the latest in the anime world. From a massive anime library to the newest manga and news, everything is just a tap away."
             android:textColor="@color/white"
             android:textAlignment="center"
-            android:paddingHorizontal="55dp"
+            android:paddingHorizontal="45dp"
             android:fontFamily="@font/poppins"
             android:textSize="14sp"/>
 

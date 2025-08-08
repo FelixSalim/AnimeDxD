@@ -8,4 +8,5 @@
     <color name="background">#FF1A0A2F</color>
     <color name="primary">#FF6643B4</color>
     <color name="secondary">#FF21013B</color>
+    <color name="accent">#FFB900C0</color>
 </resources>

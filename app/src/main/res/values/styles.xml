@@ -4,4 +4,9 @@
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">10sp</item>
     </style>
+
+    <style name="PopupAnimation">
+        <item name="android:windowEnterAnimation">@anim/dropdown_open</item>
+        <item name="android:windowExitAnimation">@anim/dropdown_close</item>
+    </style>
 </resources>
