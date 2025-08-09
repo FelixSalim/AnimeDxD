@@ -1,13 +1,18 @@
 package com.example.animedxd.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -48,12 +53,10 @@ public class HomeActivity extends AppCompatActivity {
 
             popupWindow.setAnimationStyle(R.style.PopupAnimation);
 
-            View rootView = findViewById(android.R.id.content);
-            rootView.setForeground(new ColorDrawable(Color.parseColor("#88000000")));
-
-            popupWindow.setOnDismissListener(() -> {
-                rootView.setForeground(null);
-            });
+            LinearLayout overlay = findViewById(R.id.overlay);
+            overlay.setOnClickListener(vl -> popupWindow.dismiss());
+            popupWindow.setOnDismissListener(() -> overlay.setVisibility(View.GONE));
+            overlay.setVisibility(View.VISIBLE);
 
             popupWindow.showAsDropDown(menuIcon, 0, -400);
 

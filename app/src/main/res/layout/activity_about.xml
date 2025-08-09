@@ -8,18 +8,6 @@
     android:background="@color/background"
     tools:context=".activities.AboutActivity">
 
-    <ImageButton
-        android:id="@+id/dropdownMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/menu_background"
-        android:src="@drawable/menu_icon"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:padding="15dp"
-        />
-
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
@@ -79,5 +67,26 @@
         app:itemTextAppearanceInactive="@style/BottomNavTextStyle"
         app:menu="@menu/bottom_nav_menu"
         android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#60000000"
+        android:visibility="invisible"
+        android:orientation="vertical"/>
+
+    <ImageButton
+        android:id="@+id/dropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/menu_background"
+        android:src="@drawable/menu_icon"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:padding="15dp"
+        android:contentDescription="dropdown menu icon"
+        />
 
 </RelativeLayout>
