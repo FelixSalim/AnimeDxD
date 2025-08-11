@@ -9,4 +9,11 @@
         <item name="android:windowEnterAnimation">@anim/dropdown_open</item>
         <item name="android:windowExitAnimation">@anim/dropdown_close</item>
     </style>
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <!-- Makes the dialog wider and background transparent -->
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

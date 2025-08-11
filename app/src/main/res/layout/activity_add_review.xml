@@ -8,41 +8,103 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="0dp"
         android:background="@drawable/bg_add_a_review"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <!-- Title -->
-        <TextView
+        <!-- Scrollable content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Title -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingVertical="16dp"
+                    android:text="ADD A REVIEW"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="italic"
+                    android:paddingBottom="10dp"/>
+
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:hint="Enter your username..."
+                    android:textColorHint="#FF00FF"
+                    android:textColor="#FFFFFF"
+                    android:padding="10dp"
+                    android:layout_marginBottom="25dp"/>
+
+                <!-- Review Label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Review"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="italic"
+                    android:paddingBottom="10dp"/>
+
+                <!-- Review Input -->
+                <EditText
+                    android:id="@+id/etReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/edittext_border"
+                    android:gravity="top"
+                    android:hint="Give your comment here..."
+                    android:textColorHint="#FF00FF"
+                    android:textColor="#FFFFFF"
+                    android:padding="10dp"
+                    android:layout_marginBottom="20dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Button row fixed at bottom -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="16dp"
-            android:text="ADD A REVIEW"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white" />
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/addReviewButton"
-            android:layout_width="223dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/bg_cancel"
-            android:text="CANCEL"
-            android:textStyle="bold"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CANCEL"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/cancel_button"
+                android:layout_marginEnd="10dp"/>
 
-        <Button
-            android:id="@+id/addReviewButton"
-            android:layout_width="223dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/bg_save"
-            android:text="SAVE"
-            android:textStyle="bold"
-            android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SAVE"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/save_button"/>
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

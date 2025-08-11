@@ -1,14 +1,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AA000000">
+    android:background="#AA000000"
+    android:clickable="true"
+    android:focusable="true">
 
     <!-- Card Purple -->
     <LinearLayout
+        android:id="@+id/cardContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="0dp"
         android:background="@drawable/bg_reviews_card"
         android:orientation="vertical">
 

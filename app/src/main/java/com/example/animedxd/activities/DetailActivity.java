@@ -1,8 +1,11 @@
 package com.example.animedxd.activities;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
+    private List<Review> reviews;
+    private ReviewsAdapter adapter;
 
+    private Dialog reviewDialog;
+
+    private static final int REQUEST_ADD_REVIEW = 100;
     Button reviewButton;
 
     @Override
@@ -56,27 +64,88 @@ public class DetailActivity extends AppCompatActivity {
         genreLabel.setText(animeGenre);
         synopsisLabel.setText(animeSynopsis);
 
+        // Inisialisasi list review dari "database"
+        reviews = getReviewsFromDatabase();
+
         // Klik tombol review → munculkan overlay
         reviewButton.setOnClickListener(v -> {
-            Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
-            dialog.setContentView(R.layout.dialog_review_overlay);
+            AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.dialog_review_overlay, null);
+            builder.setView(dialogView);
 
-            RecyclerView recyclerView = dialog.findViewById(R.id.reviewsRecyclerView);
-            Button addReviewBtn = dialog.findViewById(R.id.addReviewButton);
+            RecyclerView recyclerView = dialogView.findViewById(R.id.reviewsRecyclerView);
+            Button addReviewBtn = dialogView.findViewById(R.id.addReviewButton);
 
-            // Setup list review
-            List<Review> reviews = getReviewsFromDatabase(); // ganti sesuai sumber data
+            // Gunakan adapter global
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new ReviewsAdapter(reviews));
+            adapter = new ReviewsAdapter(reviews);
+            recyclerView.setAdapter(adapter);
 
-            // Pindah ke halaman Add Review
+            AlertDialog dialog = builder.create();
+            reviewDialog = dialog; // Simpan referensi ke dialog global
+
             addReviewBtn.setOnClickListener(btn -> {
-                dialog.dismiss();
-                startActivity(new Intent(this, AddReviewActivity.class));
+                startActivityForResult(new Intent(this, AddReviewActivity.class), REQUEST_ADD_REVIEW);
             });
 
             dialog.show();
         });
+
+    }
+
+    private void showReviewDialog() {
+        // Kalau dialog sudah ada, tutup dulu supaya nggak dobel
+        if (reviewDialog != null && reviewDialog.isShowing()) {
+            reviewDialog.dismiss();
+        }
+
+        reviewDialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        reviewDialog.setContentView(R.layout.dialog_review_overlay);
+
+        RecyclerView recyclerView = reviewDialog.findViewById(R.id.reviewsRecyclerView);
+        Button addReviewBtn = reviewDialog.findViewById(R.id.addReviewButton);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ReviewsAdapter(reviews);
+        recyclerView.setAdapter(adapter);
+
+        // Pindah ke AddReviewActivity tanpa dismiss dialog
+        addReviewBtn.setOnClickListener(btn -> {
+            Intent intent = new Intent(this, AddReviewActivity.class);
+            startActivityForResult(intent, REQUEST_ADD_REVIEW);
+        });
+
+        reviewDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_ADD_REVIEW && resultCode == RESULT_OK && data != null) {
+            String username = data.getStringExtra("username");
+            String reviewText = data.getStringExtra("review");
+
+            if (username != null && reviewText != null) {
+                reviews.add(new Review(username, reviewText));
+
+                if (adapter != null) {
+                    adapter.notifyItemInserted(reviews.size() - 1);
+
+                    // Kalau dialog masih kebuka, scroll ke review terbaru
+                    if (reviewDialog != null && reviewDialog.isShowing()) {
+                        RecyclerView rv = reviewDialog.findViewById(R.id.reviewsRecyclerView);
+                        if (rv != null) {
+                            rv.scrollToPosition(reviews.size() - 1);
+                        }
+                    } else {
+                        // Kalau dialog nggak kebuka, buka lagi
+                        showReviewDialog();
+                    }
+                }
+            }
+        }
     }
 
     // Contoh data dummy
