@@ -1,17 +1,18 @@
 package com.example.animedxd.activities;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.animedxd.R;
 import com.example.animedxd.adapters.ReviewsAdapter;
 import com.example.animedxd.models.Review;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class DetailActivity extends AppCompatActivity {
     private Dialog reviewDialog;
 
     private static final int REQUEST_ADD_REVIEW = 100;
-    Button reviewButton;
+    AppCompatButton reviewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +72,11 @@ public class DetailActivity extends AppCompatActivity {
 
         // Klik tombol review → munculkan overlay
         reviewButton.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
-            LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.dialog_review_overlay, null);
-            builder.setView(dialogView);
+            reviewButton.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            reviewButton.setTextColor(Color.parseColor("#FA00FF"));
+
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_review_overlay, null);
 
             RecyclerView recyclerView = dialogView.findViewById(R.id.reviewsRecyclerView);
             Button addReviewBtn = dialogView.findViewById(R.id.addReviewButton);
@@ -82,14 +86,20 @@ public class DetailActivity extends AppCompatActivity {
             adapter = new ReviewsAdapter(reviews);
             recyclerView.setAdapter(adapter);
 
-            AlertDialog dialog = builder.create();
-            reviewDialog = dialog; // Simpan referensi ke dialog global
-
             addReviewBtn.setOnClickListener(btn -> {
+                addReviewBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                addReviewBtn.setTextColor(Color.parseColor("#FA00FF"));
                 startActivityForResult(new Intent(this, AddReviewActivity.class), REQUEST_ADD_REVIEW);
             });
 
-            dialog.show();
+            bottomSheetDialog.setContentView(dialogView);
+            FrameLayout bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                behavior.setSkipCollapsed(true);
+            }
+            bottomSheetDialog.show();
         });
 
     }

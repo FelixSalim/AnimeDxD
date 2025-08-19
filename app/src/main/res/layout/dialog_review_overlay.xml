@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#AA000000"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
     android:clickable="true"
     android:focusable="true">
 
@@ -10,8 +10,7 @@
     <LinearLayout
         android:id="@+id/cardContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_height="580dp"
         android:background="@drawable/bg_reviews_card"
         android:orientation="vertical">
         <TextView

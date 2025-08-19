@@ -2,6 +2,7 @@ package com.example.animedxd.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -67,7 +68,8 @@ public class AddReviewActivity extends AppCompatActivity {
             if (!valid) return; // kalau ada error, jangan lanjut
 
             // Kalau valid -> ubah warna button Save
-            btnSave.setBackgroundResource(R.drawable.save_button_done);
+            btnSave.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            btnSave.setTextColor(Color.parseColor("#FA00FF"));
 
             // Simpan status ke SharedPreferences
             prefs.edit().putBoolean(KEY_IS_SAVED, true).apply();
