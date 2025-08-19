@@ -48,14 +48,14 @@ public class AddReviewActivity extends AppCompatActivity {
                 tvErrorUsername.setVisibility(View.VISIBLE);
                 valid = false;
             } else {
-                tvErrorUsername.setVisibility(View.GONE);
+                tvErrorUsername.setVisibility(View.INVISIBLE);
             }
 
             if (review.isEmpty()) {
                 tvErrorReview.setVisibility(View.VISIBLE);
                 valid = false;
             } else {
-                tvErrorReview.setVisibility(View.GONE);
+                tvErrorReview.setVisibility(View.INVISIBLE);
             }
 
             if (!valid) return;
@@ -80,7 +80,7 @@ public class AddReviewActivity extends AppCompatActivity {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().trim().isEmpty()) {
-                    tvErrorUsername.setVisibility(TextView.GONE);
+                    tvErrorUsername.setVisibility(TextView.INVISIBLE);
                 }
             }
             @Override public void afterTextChanged(Editable s) {}
@@ -90,7 +90,7 @@ public class AddReviewActivity extends AppCompatActivity {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().trim().isEmpty()) {
-                    tvErrorReview.setVisibility(TextView.GONE);
+                    tvErrorReview.setVisibility(TextView.INVISIBLE);
                 }
             }
             @Override public void afterTextChanged(Editable s) {}
