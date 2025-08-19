@@ -35,18 +35,10 @@ public class AddReviewActivity extends AppCompatActivity {
         tvErrorUsername = findViewById(R.id.tvErrorUsername);
         tvErrorReview = findViewById(R.id.tvErrorReview);
 
-        // init prefs
-        prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-
-        // Cek status tombol Save sebelumnya
-        boolean isSaved = prefs.getBoolean(KEY_IS_SAVED, false);
-        if (isSaved) {
-            btnSave.setBackgroundResource(R.drawable.save_button_done);
-            btnSave.setTextColor(getResources().getColor(R.color.accent));
-
-        }
-
         btnSave.setOnClickListener(v -> {
+            btnSave.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            btnSave.setTextColor(Color.parseColor("#FA00FF"));
+
             boolean valid = true;
             String username = etUsername.getText().toString().trim();
             String review = etReview.getText().toString().trim();
@@ -66,13 +58,6 @@ public class AddReviewActivity extends AppCompatActivity {
             }
 
             if (!valid) return; // kalau ada error, jangan lanjut
-
-            // Kalau valid -> ubah warna button Save
-            btnSave.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            btnSave.setTextColor(Color.parseColor("#FA00FF"));
-
-            // Simpan status ke SharedPreferences
-            prefs.edit().putBoolean(KEY_IS_SAVED, true).apply();
 
             // Kirim balik data
             Intent result = new Intent();
