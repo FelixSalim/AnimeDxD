@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,36 +37,39 @@ public class AddReviewActivity extends AppCompatActivity {
         tvErrorReview = findViewById(R.id.tvErrorReview);
 
         btnSave.setOnClickListener(v -> {
-            btnSave.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            btnSave.setTextColor(Color.parseColor("#FA00FF"));
+            btnSave.setBackgroundResource(R.drawable.add_review_button_done);
+            btnSave.setTextColor(getResources().getColor(R.color.accent));
 
             boolean valid = true;
             String username = etUsername.getText().toString().trim();
             String review = etReview.getText().toString().trim();
 
             if (username.isEmpty()) {
-                tvErrorUsername.setVisibility(TextView.VISIBLE);
+                tvErrorUsername.setVisibility(View.VISIBLE);
                 valid = false;
             } else {
-                tvErrorUsername.setVisibility(TextView.GONE);
+                tvErrorUsername.setVisibility(View.GONE);
             }
 
             if (review.isEmpty()) {
-                tvErrorReview.setVisibility(TextView.VISIBLE);
+                tvErrorReview.setVisibility(View.VISIBLE);
                 valid = false;
             } else {
-                tvErrorReview.setVisibility(TextView.GONE);
+                tvErrorReview.setVisibility(View.GONE);
             }
 
-            if (!valid) return; // kalau ada error, jangan lanjut
+            if (!valid) return;
 
-            // Kirim balik data
+            // Simpan flag di SharedPreferences kalau memang dibutuhkan
+            // prefs.edit().putBoolean(KEY_IS_SAVED, true).apply();
+
             Intent result = new Intent();
             result.putExtra("username", username);
             result.putExtra("review", review);
             setResult(RESULT_OK, result);
             finish();
         });
+
 
         btnCancel.setOnClickListener(v -> {
             setResult(RESULT_CANCELED);

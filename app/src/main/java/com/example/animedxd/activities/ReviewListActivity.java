@@ -1,10 +1,12 @@
 package com.example.animedxd.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animedxd.adapters.ReviewsAdapter;
 import com.example.animedxd.models.Review;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +36,10 @@ public class ReviewListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_review_overlay);
+        setContentView(R.layout.activity_review_list);
 
         reviewsRecyclerView = findViewById(R.id.reviewsRecyclerView);
         addReviewButton = findViewById(R.id.addReviewButton);
-        RelativeLayout rootLayout = findViewById(R.id.rootLayout);
-        LinearLayout cardContainer = findViewById(R.id.cardContainer);
 
         // Data awal (bisa kosong atau contoh)
         reviewList = new ArrayList<>();
@@ -49,20 +51,45 @@ public class ReviewListActivity extends AppCompatActivity {
         reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         reviewsRecyclerView.setAdapter(reviewsAdapter);
 
-        // Klik luar card -> nutup
-        rootLayout.setOnClickListener(v -> finish());
-
-        // Biar klik card gak nutup
-                cardContainer.setOnClickListener(v -> {});
-
         // Ubah warna button pas diklik
-                addReviewButton.setOnClickListener(v -> {
-                    Intent intent = new Intent(ReviewListActivity.this, AddReviewActivity.class);
-                    startActivityForResult(intent, REQUEST_ADD_REVIEW);
+        addReviewButton.setOnClickListener(v -> {
+            addReviewButton.setBackgroundResource(R.drawable.add_review_button_done);
+            addReviewButton.setTextColor(getResources().getColor(R.color.accent));
 
-                    addReviewButton.setBackgroundResource(R.drawable.add_review_button_done);
-                    addReviewButton.setTextColor(getResources().getColor(R.color.accent));
-                });
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+            View dialogView = getLayoutInflater().inflate(R.layout.activity_add_review, null, false);
+            bottomSheetDialog.setContentView(dialogView);
+
+            // Tombol cancel dan save
+            Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+            Button btnSave = dialogView.findViewById(R.id.btnSave);
+
+            btnCancel.setOnClickListener(view -> bottomSheetDialog.dismiss());
+
+            btnSave.setOnClickListener(view -> {
+                String username = ((android.widget.EditText) dialogView.findViewById(R.id.etUsername)).getText().toString();
+                String comment = ((android.widget.EditText) dialogView.findViewById(R.id.etReview)).getText().toString();
+
+                if (!username.isEmpty() && !comment.isEmpty()) {
+                    reviewList.add(new Review(username, comment));
+                    reviewsAdapter.notifyItemInserted(reviewList.size() - 1);
+                    reviewsRecyclerView.scrollToPosition(reviewList.size() - 1);
+                    bottomSheetDialog.dismiss();
+                }
+            });
+
+            bottomSheetDialog.setContentView(dialogView);
+
+            FrameLayout bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+                behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                behavior.setSkipCollapsed(true);
+            }
+
+            bottomSheetDialog.show();
+        });
+
 
     }
 

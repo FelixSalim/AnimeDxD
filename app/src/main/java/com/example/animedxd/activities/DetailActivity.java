@@ -72,8 +72,8 @@ public class DetailActivity extends AppCompatActivity {
 
         // Klik tombol review → munculkan overlay
         reviewButton.setOnClickListener(v -> {
-            reviewButton.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            reviewButton.setTextColor(Color.parseColor("#FA00FF"));
+            reviewButton.setBackgroundResource(R.drawable.review_button_bg_done);
+            reviewButton.setTextColor(getResources().getColor(R.color.accent));
 
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
             View dialogView = getLayoutInflater().inflate(R.layout.dialog_review_overlay, null);
@@ -142,21 +142,11 @@ public class DetailActivity extends AppCompatActivity {
 
                 if (adapter != null) {
                     adapter.notifyItemInserted(reviews.size() - 1);
-
-                    // Kalau dialog masih kebuka, scroll ke review terbaru
-                    if (reviewDialog != null && reviewDialog.isShowing()) {
-                        RecyclerView rv = reviewDialog.findViewById(R.id.reviewsRecyclerView);
-                        if (rv != null) {
-                            rv.scrollToPosition(reviews.size() - 1);
-                        }
-                    } else {
-                        // Kalau dialog nggak kebuka, buka lagi
-                        showReviewDialog();
-                    }
                 }
             }
         }
     }
+
 
     // Contoh data dummy
     private List<Review> getReviewsFromDatabase() {

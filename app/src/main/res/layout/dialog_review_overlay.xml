@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/cardContainer"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="640dp"
         android:background="@drawable/bg_reviews_card"
         android:orientation="vertical">
         <TextView
