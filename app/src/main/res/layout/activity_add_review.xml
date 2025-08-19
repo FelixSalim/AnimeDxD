@@ -50,8 +50,18 @@
                     android:hint="Enter your username..."
                     android:textColorHint="#FF00FF"
                     android:textColor="#FFFFFF"
-                    android:padding="10dp"
-                    android:layout_marginBottom="25dp"/>
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/tvErrorUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="⚠️ Username is required."
+                    android:textColor="#FF0000"
+                    android:fontFamily="@font/poppins_bolditalic"
+                    android:textSize="5pt"
+                    android:visibility="gone"
+                    android:layout_marginBottom="20dp"/>
 
                 <!-- Review Label -->
                 <TextView
@@ -72,7 +82,17 @@
                     android:hint="Give your comment here..."
                     android:textColorHint="#FF00FF"
                     android:textColor="#FFFFFF"
-                    android:padding="10dp"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvErrorReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="⚠️ Review is required."
+                    android:textColor="#FF0000"
+                    android:fontFamily="@font/poppins_bolditalic"
+                    android:textSize="5pt"
+                    android:visibility="gone"
                     android:layout_marginBottom="20dp"/>
             </LinearLayout>
         </ScrollView>
@@ -84,7 +104,7 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -95,7 +115,7 @@
                 android:background="@drawable/cancel_button"
                 android:layout_marginEnd="10dp"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSave"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

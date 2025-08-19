@@ -14,8 +14,6 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/bg_reviews_card"
         android:orientation="vertical">
-
-        <!-- Title -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +33,7 @@
             android:padding="16dp" />
 
         <!-- Button -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addReviewButton"
             android:layout_width="223dp"
             android:layout_height="wrap_content"

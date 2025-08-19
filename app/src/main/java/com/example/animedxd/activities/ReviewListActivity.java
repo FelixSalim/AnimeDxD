@@ -1,9 +1,13 @@
 package com.example.animedxd.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import com.example.animedxd.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +36,8 @@ public class ReviewListActivity extends AppCompatActivity {
 
         reviewsRecyclerView = findViewById(R.id.reviewsRecyclerView);
         addReviewButton = findViewById(R.id.addReviewButton);
+        RelativeLayout rootLayout = findViewById(R.id.rootLayout);
+        LinearLayout cardContainer = findViewById(R.id.cardContainer);
 
         // Data awal (bisa kosong atau contoh)
         reviewList = new ArrayList<>();
@@ -43,11 +49,21 @@ public class ReviewListActivity extends AppCompatActivity {
         reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         reviewsRecyclerView.setAdapter(reviewsAdapter);
 
-        // Klik "ADD A REVIEW"
-        addReviewButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ReviewListActivity.this, AddReviewActivity.class);
-            startActivityForResult(intent, REQUEST_ADD_REVIEW);
-        });
+        // Klik luar card -> nutup
+        rootLayout.setOnClickListener(v -> finish());
+
+        // Biar klik card gak nutup
+                cardContainer.setOnClickListener(v -> {});
+
+        // Ubah warna button pas diklik
+                addReviewButton.setOnClickListener(v -> {
+                    Intent intent = new Intent(ReviewListActivity.this, AddReviewActivity.class);
+                    startActivityForResult(intent, REQUEST_ADD_REVIEW);
+
+                    addReviewButton.setBackgroundResource(R.drawable.add_review_button_done);
+                    addReviewButton.setTextColor(getResources().getColor(R.color.accent));
+                });
+
     }
 
     // Tangkap hasil dari AddReviewActivity

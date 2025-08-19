@@ -24,6 +24,10 @@
         <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />
+        <activity android:name=".activities.AddReviewActivity"
+            android:exported="false"/>
+        <activity android:name=".activities.ReviewListActivity"
+            android:exported="false"/>
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">
