@@ -6,28 +6,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.HomeActivity"
-    android:orientation="vertical"
-    android:background="@color/background"
-    android:gravity="center">
+    android:background="@color/background">
 
-    <!--    TEMPORARY CODE, REMOVE WHEN U WORK ON THIS   -->
-
+    <!-- Main Content -->
     <LinearLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
+        <!-- Welcome Text -->
         <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
+            android:id="@+id/welcomeText"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Welcome,"
             android:fontFamily="@font/poppins"
-            android:text="20sp"/>
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+        <!-- Tabs inside a FrameLayout for background + indicator -->
+        <FrameLayout
+            android:id="@+id/tabContainer"
+            android:layout_width="290dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center">
+
+            <!-- Rounded rectangle background -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/tab_background"/>
+
+            <!-- TabLayout with moving indicator -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabIndicatorGravity="stretch"
+                app:tabIndicatorFullWidth="true"
+                app:tabRippleColor="@null"
+                app:tabTextColor="@color/tab_text_color"
+                app:tabSelectedTextColor="@android:color/white"
+                app:tabMode="fixed"
+                app:tabGravity="fill"/>
+
+        </FrameLayout>
+
+        <!-- Carousel ViewPager2 -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/tabViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:overScrollMode="never"/>
+
+
 
     </LinearLayout>
-    <!--     TEMPORARY CODE STOPS HERE   -->
 
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -43,6 +92,7 @@
         app:menu="@menu/bottom_nav_menu"
         android:layout_alignParentBottom="true"/>
 
+    <!-- Overlay -->
     <LinearLayout
         android:id="@+id/overlay"
         android:layout_width="match_parent"
@@ -51,6 +101,7 @@
         android:visibility="invisible"
         android:orientation="vertical"/>
 
+    <!-- Dropdown Menu -->
     <ImageButton
         android:id="@+id/dropdownMenu"
         android:layout_width="wrap_content"
@@ -61,6 +112,5 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:padding="15dp"
-        android:contentDescription="dropdown menu icon"
-        />
+        android:contentDescription="dropdown menu icon"/>
 </RelativeLayout>

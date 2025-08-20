@@ -7,6 +7,7 @@
     <color name="red">#FFFF0000</color>
     <color name="background">#FF1A0A2F</color>
     <color name="primary">#FF6643B4</color>
+    <color name="primary50">#7F6643B4</color>
     <color name="secondary">#FF21013B</color>
     <color name="accent">#FFB900C0</color>
 </resources>
