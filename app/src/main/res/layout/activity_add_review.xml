@@ -18,29 +18,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingVertical="16dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="16dp"
+                android:fontFamily="@font/poppins_bold"
                 android:text="ADD A REVIEW"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="10pt"
                 android:textColor="@android:color/white" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_italic"
                 android:text="Username"
-                android:textColor="#FFFFFF"
-                android:textStyle="italic"
-                android:paddingBottom="10dp"/>
+                android:textSize="6pt"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_border"
+                android:textSize="6pt"
+                android:fontFamily="@font/poppins"
                 android:hint="Enter your username..."
-                android:textColorHint="#FF00FF"
+                android:textColorHint="@android:color/darker_gray"
                 android:textColor="#FFFFFF"
-                android:padding="10dp" />
+                android:padding="7dp" />
 
             <TextView
                 android:id="@+id/tvErrorUsername"
@@ -59,21 +62,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Review"
+                android:textSize="7pt"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_bolditalic"
                 android:textColor="#FFFFFF"
-                android:textStyle="italic"
-                android:paddingBottom="10dp"/>
+                android:textStyle="italic" />
 
             <!-- Review Input -->
             <EditText
                 android:id="@+id/etReview"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
+                android:fontFamily="@font/poppins"
                 android:background="@drawable/edittext_border"
                 android:gravity="top"
+                android:textSize="6pt"
                 android:hint="Give your comment here..."
-                android:textColorHint="#FF00FF"
+                android:textColorHint="@android:color/darker_gray"
                 android:textColor="#FFFFFF"
-                android:padding="10dp"/>
+                android:padding="7dp"/>
 
             <TextView
                 android:id="@+id/tvErrorReview"
@@ -102,7 +109,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins_bold"
             android:text="CANCEL"
+            android:textSize="7pt"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:background="@drawable/cancel_button"
@@ -113,6 +122,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="7pt"
             android:text="SAVE"
             android:textStyle="bold"
             android:textColor="#FFFFFF"

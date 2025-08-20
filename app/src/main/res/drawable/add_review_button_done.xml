@@ -17,7 +17,7 @@
     <!-- Default state -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="6dp"/>  <!-- tambahkan ini -->
+            <corners android:radius="6dp"/>
             <solid android:color="@color/white"/>
         </shape>
     </item>

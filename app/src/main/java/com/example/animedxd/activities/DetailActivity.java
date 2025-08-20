@@ -52,6 +52,12 @@ public class DetailActivity extends AppCompatActivity {
             return insets;
         });
 
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DetailActivity.this, ListActivity.class);
+            startActivity(intent);
+            finish();
+        });
         // Ambil data dari intent
         String animeTitle = getIntent().getStringExtra("title");
         String animeGenre = getIntent().getStringExtra("genre");
@@ -90,14 +96,16 @@ public class DetailActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
 
             addReviewBtn.setOnClickListener(btn -> {
-                addReviewBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                addReviewBtn.setTextColor(Color.parseColor("#FA00FF"));
-
                 BottomSheetDialog bottomSheetDialog2 = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
                 View dialogView2 = getLayoutInflater().inflate(R.layout.activity_add_review, null, false);
+
+                // cukup sekali saja
                 bottomSheetDialog2.setContentView(dialogView2);
 
-                // Tombol cancel dan save
+                // gunakan setBackgroundResource, bukan setBackgroundColor
+                addReviewBtn.setBackgroundResource(R.drawable.add_review_button_done);
+                addReviewBtn.setTextColor(getResources().getColor(R.color.accent));
+
                 Button btnCancel = dialogView2.findViewById(R.id.btnCancel);
                 Button btnSave = dialogView2.findViewById(R.id.btnSave);
 
@@ -109,10 +117,14 @@ public class DetailActivity extends AppCompatActivity {
                 etUsername = dialogView2.findViewById(R.id.etUsername);
                 etReview = dialogView2.findViewById(R.id.etReview);
 
-                btnCancel.setOnClickListener(view -> bottomSheetDialog2.dismiss());
+                btnCancel.setOnClickListener(view -> {
+                    btnCancel.setBackgroundResource(R.drawable.save_button_done);
+                    btnCancel.setTextColor(getResources().getColor(R.color.accent));
+                    bottomSheetDialog2.dismiss();
+                });
 
                 btnSave.setOnClickListener(view -> {
-                    btnSave.setBackgroundResource(R.drawable.add_review_button_done);
+                    btnSave.setBackgroundResource(R.drawable.save_button_done);
                     btnSave.setTextColor(getResources().getColor(R.color.accent));
 
                     boolean valid = true;

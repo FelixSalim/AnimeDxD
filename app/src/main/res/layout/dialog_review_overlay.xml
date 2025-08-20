@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingVertical="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="20dp"
             android:text="REVIEWS"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textSize="10pt"
             android:textColor="@android:color/white" />
 
         <!-- RecyclerView untuk list review -->
@@ -29,18 +29,22 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="16dp" />
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="5dp"/>
 
         <!-- Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addReviewButton"
             android:layout_width="223dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="25dp"
             android:background="@drawable/add_a_review"
             android:text="ADD A REVIEW"
-            android:textStyle="bold"
+            android:textSize="7pt"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </RelativeLayout>
