@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center">
+
+
+    <!-- Carousel centered horizontally -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/carouselViewPager"
+        android:layout_width="262dp"
+        android:layout_height="349dp"
+        android:overScrollMode="never"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Dot indicator -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/carouselTabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="180dp"
+        android:background="@android:color/transparent"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:tabMinWidth="24dp"
+        app:tabPadding="0dp"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabIndicator="@null"/>
+
+
+</FrameLayout>

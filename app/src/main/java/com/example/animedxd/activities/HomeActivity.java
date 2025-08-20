@@ -1,16 +1,12 @@
 package com.example.animedxd.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -21,11 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.animedxd.R;
+import com.example.animedxd.adapters.HomeAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private TabLayout tabLayout;
+    private ViewPager2 tabViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,15 @@ public class HomeActivity extends AppCompatActivity {
             });
         });
 
+        // --- Welcome text setup ---
+        TextView welcomeText = findViewById(R.id.welcomeText);
         String username = getIntent().getStringExtra("username");
+        if (username != null && !username.isEmpty()) {
+            welcomeText.setText("Welcome, " + username + "!");
+        } else {
+            welcomeText.setText("Welcome!");
+        }
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setSelectedItemId(R.id.navHome);
@@ -94,8 +105,25 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         });
 
-//      TEMPORARY CODE, REMOVE WHEN U START WORKING
-        TextView welcome = findViewById(R.id.welcome);
-        welcome.setText("Welcome, " + username);
+        tabLayout = findViewById(R.id.tabLayout);
+        tabViewPager = findViewById(R.id.tabViewPager);
+
+        // adapter untuk fragment News + Manga
+        HomeAdapter adapter = new HomeAdapter(this);
+        tabViewPager.setAdapter(adapter);
+
+        // Matikan input swipe manual antar tab (biar carousel tidak bentrok)
+        tabViewPager.setUserInputEnabled(false);
+
+        // sambungkan TabLayout dengan ViewPager
+        new TabLayoutMediator(tabLayout, tabViewPager,
+                (tab, position) -> {
+                    if (position == 0) {
+                        tab.setText("News");
+                    } else if (position == 1) {
+                        tab.setText("Manga");
+                    }
+                }
+        ).attach();
     }
 }
