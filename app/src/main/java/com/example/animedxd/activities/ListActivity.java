@@ -163,7 +163,7 @@ public class ListActivity extends AppCompatActivity {
                         R.drawable.hunter_x_hunter_cover),
 
                 new AnimeModel(
-                        "My Neighbor Totoro (Tonari no Totoro)",
+                        "My Neighbor Totoro",
                         "Fantasy, Slice of Life, Family",
                         "Two young sisters move to the countryside and discover a world of magical creatures, including the friendly forest spirit Totoro, who takes them on whimsical adventures.",
                         R.drawable.my_neighbor_totoro_cover),
