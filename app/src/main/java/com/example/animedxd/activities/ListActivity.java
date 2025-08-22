@@ -192,6 +192,6 @@ public class ListActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
         animeListView.setLayoutManager(layoutManager);
 
-        animeListView.setAdapter(new AnimeListCardAdapter(this, animeList));
+        animeListView.setAdapter(new AnimeListCardAdapter(this, animeList, username));
     }
 }

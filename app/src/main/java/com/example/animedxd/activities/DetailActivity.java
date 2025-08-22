@@ -52,9 +52,12 @@ public class DetailActivity extends AppCompatActivity {
             return insets;
         });
 
+        String usersname = getIntent().getStringExtra("username");
+
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(DetailActivity.this, ListActivity.class);
+            intent.putExtra("username", usersname);
             startActivity(intent);
             finish();
         });

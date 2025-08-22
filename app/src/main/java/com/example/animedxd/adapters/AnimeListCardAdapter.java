@@ -20,9 +20,12 @@ public class AnimeListCardAdapter extends RecyclerView.Adapter<AnimeListCardAdap
     private Context context;
     private AnimeModel[] animes;
 
-    public AnimeListCardAdapter(Context context, AnimeModel[] animes) {
+    private String username;
+
+    public AnimeListCardAdapter(Context context, AnimeModel[] animes, String username) {
         this.context = context;
         this.animes = animes;
+        this.username = username;
     }
 
     @NonNull
@@ -46,6 +49,7 @@ public class AnimeListCardAdapter extends RecyclerView.Adapter<AnimeListCardAdap
             intent.putExtra("genre", animes[position].getGenre());
             intent.putExtra("synopsis", animes[position].getSynopsis());
             intent.putExtra("imageCover", animes[position].getImageCover());
+            intent.putExtra("username", username);
             context.startActivity(intent);
         });
     }
